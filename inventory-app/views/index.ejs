@@ -1,0 +1,55 @@
+<%- include('partials/header') %>
+
+<header class="page-head">
+  <p class="eyebrow">Warehouse overview</p>
+  <h1>Dashboard</h1>
+</header>
+
+<section class="stat-grid">
+  <div class="stat-card">
+    <span class="stat-label">Total SKUs</span>
+    <span class="stat-value"><%= totalItems %></span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-label">Units in stock</span>
+    <span class="stat-value"><%= totalUnits %></span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-label">Inventory value</span>
+    <span class="stat-value">$<%= totalValue.toFixed(2) %></span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-label">Categories</span>
+    <span class="stat-value"><%= categoryCount %></span>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Reorder now</h2>
+    <a href="/items?stock=low" class="link">View all →</a>
+  </div>
+
+  <% if (lowStock.length === 0) { %>
+    <p class="empty-note">Nothing below its reorder level. Stock is healthy.</p>
+  <% } else { %>
+    <table class="table">
+      <thead>
+        <tr><th>Item</th><th>SKU</th><th>Category</th><th>On hand</th><th>Reorder at</th></tr>
+      </thead>
+      <tbody>
+        <% lowStock.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td class="mono"><%= item.sku %></td>
+            <td><%= item.categoryName %></td>
+            <td class="qty-low"><%= item.quantity %></td>
+            <td><%= item.reorderLevel %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</section>
+
+<%- include('partials/footer') %>

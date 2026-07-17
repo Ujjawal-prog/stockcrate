@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<header class="page-head">
+  <p class="eyebrow">Grouping</p>
+  <h1>Categories</h1>
+</header>
+
+<section class="panel panel-narrow">
+  <form action="/categories" method="POST" class="inline-form">
+    <input type="text" name="name" placeholder="New category name…" required>
+    <button type="submit" class="btn btn-primary">+ Add</button>
+  </form>
+</section>
+
+<section class="panel">
+  <table class="table">
+    <thead>
+      <tr><th>Category</th><th>Items</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% categories.forEach(c => { %>
+        <tr>
+          <td><%= c.name %></td>
+          <td><%= c.itemCount %></td>
+          <td class="row-actions">
+            <form action="/categories/<%= c.id %>?_method=DELETE" method="POST" onsubmit="return confirm('Delete category &quot;<%= c.name %>&quot;?');">
+              <button type="submit" class="link link-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+
+<%- include('partials/footer') %>

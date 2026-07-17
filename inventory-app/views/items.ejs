@@ -1,0 +1,59 @@
+<%- include('partials/header') %>
+
+<header class="page-head">
+  <p class="eyebrow">Full catalog</p>
+  <h1>Inventory</h1>
+  <a href="/items/new" class="btn btn-primary">+ Add item</a>
+</header>
+
+<form class="filter-bar" method="GET" action="/items">
+  <input type="text" name="q" placeholder="Search name or SKU…" value="<%= query.q %>">
+  <select name="category">
+    <option value="">All categories</option>
+    <% categories.forEach(c => { %>
+      <option value="<%= c.id %>" <%= String(c.id) === query.category ? 'selected' : '' %>><%= c.name %></option>
+    <% }) %>
+  </select>
+  <select name="stock">
+    <option value="">All stock levels</option>
+    <option value="low" <%= query.stock === 'low' ? 'selected' : '' %>>Low stock only</option>
+  </select>
+  <button type="submit" class="btn btn-ghost">Filter</button>
+  <% if (query.q || query.category || query.stock) { %>
+    <a href="/items" class="btn btn-ghost">Clear</a>
+  <% } %>
+</form>
+
+<section class="panel">
+  <% if (items.length === 0) { %>
+    <p class="empty-note">No items match your filters yet.</p>
+  <% } else { %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Item</th><th>SKU</th><th>Category</th><th>Qty</th><th>Price</th><th>Reorder at</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td class="mono"><%= item.sku %></td>
+            <td><%= item.categoryName %></td>
+            <td class="<%= item.quantity <= item.reorderLevel ? 'qty-low' : '' %>"><%= item.quantity %></td>
+            <td>$<%= Number(item.price).toFixed(2) %></td>
+            <td><%= item.reorderLevel %></td>
+            <td class="row-actions">
+              <a href="/items/<%= item.id %>/edit" class="link">Edit</a>
+              <form action="/items/<%= item.id %>?_method=DELETE" method="POST" onsubmit="return confirm('Remove &quot;<%= item.name %>&quot; from inventory?');">
+                <button type="submit" class="link link-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</section>
+
+<%- include('partials/footer') %>

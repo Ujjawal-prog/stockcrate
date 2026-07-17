@@ -1,0 +1,51 @@
+<%- include('partials/header') %>
+
+<header class="page-head">
+  <p class="eyebrow"><%= item ? 'Edit existing SKU' : 'New SKU' %></p>
+  <h1><%= title %></h1>
+</header>
+
+<section class="panel panel-narrow">
+  <form action="<%= formAction %>" method="<%= formMethod %>" class="stack-form">
+    <label>
+      Item name
+      <input type="text" name="name" required value="<%= item ? item.name : '' %>" placeholder="e.g. Wireless Mouse">
+    </label>
+
+    <label>
+      SKU
+      <input type="text" name="sku" required value="<%= item ? item.sku : '' %>" placeholder="e.g. ELE-1001">
+    </label>
+
+    <label>
+      Category
+      <select name="categoryId" required>
+        <% categories.forEach(c => { %>
+          <option value="<%= c.id %>" <%= item && item.categoryId === c.id ? 'selected' : '' %>><%= c.name %></option>
+        <% }) %>
+      </select>
+    </label>
+
+    <div class="form-row">
+      <label>
+        Quantity on hand
+        <input type="number" name="quantity" min="0" required value="<%= item ? item.quantity : 0 %>">
+      </label>
+      <label>
+        Reorder level
+        <input type="number" name="reorderLevel" min="0" required value="<%= item ? item.reorderLevel : 0 %>">
+      </label>
+      <label>
+        Unit price ($)
+        <input type="number" name="price" min="0" step="0.01" required value="<%= item ? item.price : 0 %>">
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary"><%= item ? 'Save changes' : 'Add item' %></button>
+      <a href="/items" class="btn btn-ghost">Cancel</a>
+    </div>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

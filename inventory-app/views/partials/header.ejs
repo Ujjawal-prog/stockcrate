@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> · StockCrate</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark">◧</span>
+        <span class="brand-name">StockCrate</span>
+      </div>
+      <nav class="nav">
+        <a href="/" class="<%= title === 'Dashboard' ? 'active' : '' %>">Dashboard</a>
+        <a href="/items" class="<%= title && title.includes('Item') ? 'active' : '' %>">Inventory</a>
+        <a href="/categories" class="<%= title === 'Categories' ? 'active' : '' %>">Categories</a>
+      </nav>
+      <div class="sidebar-foot">Node · Express · EJS</div>
+    </aside>
+    <main class="content">
+      <% if (typeof success !== 'undefined' && success.length) { %>
+        <div class="flash flash-success"><%= success[0] %></div>
+      <% } %>
+      <% if (typeof error !== 'undefined' && error.length) { %>
+        <div class="flash flash-error"><%= error[0] %></div>
+      <% } %>

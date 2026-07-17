@@ -1,0 +1,96 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Electronics"
+    },
+    {
+      "id": 2,
+      "name": "Office Supplies"
+    },
+    {
+      "id": 3,
+      "name": "Packaging"
+    },
+    {
+      "id": 4,
+      "name": "Tools"
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "name": "Wireless Mouse",
+      "sku": "ELE-1001",
+      "categoryId": 1,
+      "quantity": 42,
+      "price": 18.99,
+      "reorderLevel": 15
+    },
+    {
+      "id": 2,
+      "name": "USB-C Cable 1m",
+      "sku": "ELE-1002",
+      "categoryId": 1,
+      "quantity": 8,
+      "price": 6.5,
+      "reorderLevel": 20
+    },
+    {
+      "id": 3,
+      "name": "A4 Paper Ream",
+      "sku": "OFF-2001",
+      "categoryId": 2,
+      "quantity": 120,
+      "price": 4.25,
+      "reorderLevel": 30
+    },
+    {
+      "id": 4,
+      "name": "Stapler Heavy Duty",
+      "sku": "OFF-2002",
+      "categoryId": 2,
+      "quantity": 5,
+      "price": 12,
+      "reorderLevel": 10
+    },
+    {
+      "id": 5,
+      "name": "Corrugated Box Medium",
+      "sku": "PAK-3001",
+      "categoryId": 3,
+      "quantity": 300,
+      "price": 0.85,
+      "reorderLevel": 100
+    },
+    {
+      "id": 6,
+      "name": "Bubble Wrap Roll",
+      "sku": "PAK-3002",
+      "categoryId": 3,
+      "quantity": 14,
+      "price": 9.75,
+      "reorderLevel": 15
+    },
+    {
+      "id": 7,
+      "name": "Cordless Drill",
+      "sku": "TL-4001",
+      "categoryId": 4,
+      "quantity": 6,
+      "price": 74.99,
+      "reorderLevel": 5
+    },
+    {
+      "id": 8,
+      "name": "Measuring Tape 5m",
+      "sku": "TL-4002",
+      "categoryId": 4,
+      "quantity": 25,
+      "price": 5.4,
+      "reorderLevel": 10
+    }
+  ],
+  "nextItemId": 10,
+  "nextCategoryId": 5
+}
